@@ -32,7 +32,8 @@ public class NodoArbol {
         return nodoDerecha;
     }
     
-    public void insertar(int valor) {
+    
+    /*public void insertar(int valor) {
         if (valor < this.valor) {
             if (this.nodoIzquierda == null) 
                 nodoIzquierda = new NodoArbol(valor);
@@ -45,5 +46,13 @@ public class NodoArbol {
              else 
                 nodoDerecha.insertar(valor);  
         }
+    }*/
+
+    public void setNodoIzquierda(NodoArbol nodoIzquierda) {
+        this.nodoIzquierda = nodoIzquierda;
+    }
+
+    public void setNodoDerecha(NodoArbol nodoDerecha) {
+        this.nodoDerecha = nodoDerecha;
     }
 }
