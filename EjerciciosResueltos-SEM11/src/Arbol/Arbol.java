@@ -27,23 +27,27 @@ public class Arbol {
     }
 
     private NodoArbol insertar(NodoArbol nodoActual, int valor) {
-        
-        if (nodoActual == null) {
-            return new NodoArbol(valor);
-        }
-        
-        if (valor < nodoActual.getValor()) {
-
-            NodoArbol hijoIzquierda = insertar(nodoActual.getNodoIzquierda(), valor);
-            nodoActual.setNodoIzquierda(hijoIzquierda);
-            
-        } else{
-            NodoArbol hijoDerecha = insertar(nodoActual.getNodoDerecha(), valor);
-            nodoActual.setNodoDerecha(hijoDerecha);
-        }
-        
-        return nodoActual;
+    
+    // 1. CASO BASE (Obligatorio mantenerlo)
+    if (nodoActual == null) {
+        return new NodoArbol(valor);
     }
+    
+    if (valor < nodoActual.getValor()) {
+       
+        nodoActual.setNodoIzquierda(insertar(nodoActual.getNodoIzquierda(), valor));
+        
+    } else if (valor > nodoActual.getValor()) {
+        
+        nodoActual.setNodoDerecha(insertar(nodoActual.getNodoDerecha(), valor));
+        
+    } else {
+
+        return nodoActual; 
+    }
+    
+    return nodoActual;
+}
     
     public void preOrden(DefaultListModel modelo){
         preOrden(raiz, modelo);  
