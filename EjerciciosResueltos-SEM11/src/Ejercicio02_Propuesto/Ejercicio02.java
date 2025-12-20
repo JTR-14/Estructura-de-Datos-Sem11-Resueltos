@@ -1,9 +1,10 @@
 
-package Ejercicio01;
+package Ejercicio02_Propuesto;
 
-public class Ejercicio01 {
+
+public class Ejercicio02 {
     public static void main(String[] args) {
-        FrmEjercicio01 frm = new FrmEjercicio01();
+        FrmEjercicio02 frm = new FrmEjercicio02();
         frm.setLocationRelativeTo(null);
         frm.setVisible(true);
     }

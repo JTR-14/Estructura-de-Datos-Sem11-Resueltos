@@ -7,162 +7,148 @@ package Arbol;
 import javax.swing.DefaultListModel;
 
 
-public class Arbol {
-    private NodoArbol raiz;
+public class Arbol<T extends Comparable<T>> {
+    private NodoArbol<T> raiz;
     
     public Arbol(){
         this.raiz = null;
     }
-    
-    /*public void insertar(int valor){
-        if(raiz == null)
-            raiz = new NodoArbol(valor);
-        else
-            raiz.insertar(valor);
-    }*/
-    
-    
-    public void insertar(int valor){
-        this.raiz = insertar(this.raiz, valor);
+
+    public void insertar(T valor){
+        raiz = insertar(raiz, valor);
     }
 
-    private NodoArbol insertar(NodoArbol nodoActual, int valor) {
-    
-    // 1. CASO BASE (Obligatorio mantenerlo)
-    if (nodoActual == null) {
-        return new NodoArbol(valor);
-    }
-    
-    if (valor < nodoActual.getValor()) {
-       
-        nodoActual.setNodoIzquierda(insertar(nodoActual.getNodoIzquierda(), valor));
-        
-    } else if (valor > nodoActual.getValor()) {
-        
-        nodoActual.setNodoDerecha(insertar(nodoActual.getNodoDerecha(), valor));
-        
-    } else {
-
-        return nodoActual; 
-    }
-    
-    return nodoActual;
+    private NodoArbol<T> insertar(NodoArbol<T> actual, T valor) {
+        if(actual == null)
+            actual = new NodoArbol<>(valor);
+        else{
+            int comparacion = valor.compareTo(actual.getValor());
+            if(comparacion > 0)
+                 actual.setHd(insertar(actual.getHd(), valor));
+            else{
+                if(comparacion<0)
+                    actual.setHi(insertar(actual.getHi(),valor));
+             }
+        }
+    return actual;
 }
     
     public void preOrden(DefaultListModel modelo){
+        modelo.removeAllElements();
         preOrden(raiz, modelo);  
     }
-    private void preOrden(NodoArbol nodo, DefaultListModel modelo){ //centro, izquierda, derecha
-        modelo.removeAllElements();
-        if(nodo == null)
-            return;
-        else{
+    private void preOrden(NodoArbol<T> nodo, DefaultListModel modelo){ 
+            if(nodo != null){
             modelo.addElement(nodo.getValor());
-            preOrden(nodo.getNodoIzquierda(), modelo);
-            preOrden(nodo.getNodoDerecha(),modelo);
+            preOrden(nodo.getHi(), modelo);
+            preOrden(nodo.getHd(),modelo);
         }
     }
     
     public void inOrden(DefaultListModel modelo){
+        modelo.removeAllElements();
         inOrden(raiz,modelo);  
     }
-    private void inOrden(NodoArbol nodo, DefaultListModel modelo){  //izquieda, centro, derecha
-        modelo.removeAllElements();
-        if(nodo == null)
-            return;
-        else{
-            inOrden(nodo.getNodoIzquierda(), modelo);
+    private void inOrden(NodoArbol<T> nodo, DefaultListModel modelo){ 
+        if(nodo != null){
+            inOrden(nodo.getHi(), modelo);
             modelo.addElement(nodo.getValor());
-            inOrden(nodo.getNodoDerecha(), modelo);
+            inOrden(nodo.getHd(), modelo);
         }
     }
     
     public void postOrden(DefaultListModel modelo){
+        modelo.removeAllElements();
         postOrden(raiz, modelo);  
     }
-    private void postOrden(NodoArbol nodo, DefaultListModel modelo){ // izquierda, derecha, centro
-        if(nodo == null)
-            return;
-        else{
-            postOrden(nodo.getNodoIzquierda(), modelo);
-            postOrden(nodo.getNodoDerecha(), modelo);
+    private void postOrden(NodoArbol<T> nodo, DefaultListModel modelo){ 
+        if(nodo != null ){
+            postOrden(nodo.getHi(), modelo);
+            postOrden(nodo.getHd(), modelo);
             modelo.addElement(nodo.getValor());
-            
         }
     }
+    public T buscarMax() {
+    if (raiz == null) return null; 
+    return buscarMax(raiz);
+}
+
+    private T buscarMax(NodoArbol<T> nodo) {
+
+         if (nodo.getHd() == null) {
+        return nodo.getValor();
+        }
+        return buscarMax(nodo.getHd());
+    }
     
-    public boolean buscar(int valor){
+    public T buscarMin(){
+        if (raiz == null) return null;
+        return buscarMin(raiz);
+    }
+    private T buscarMin(NodoArbol<T> nodo){
+        if(nodo.getHi() == null){
+            return nodo.getValor();
+        }
+        return buscarMin(nodo.getHi());
+    }
+    public NodoArbol<T> buscar(T valor){
         return buscar(raiz,valor);
     }
-    private boolean buscar(NodoArbol nodoActual, int valor){
-        if(nodoActual == null)
-            return false;
-        if(nodoActual.getValor() == valor)
-            return true;
-        
-        if(nodoActual.getValor()< valor){
-            return buscar(nodoActual.getNodoIzquierda(),valor);
+    private NodoArbol<T> buscar(NodoArbol<T> nodoActual, T valor){
+        if(nodoActual !=null){
+            int comparador = valor.compareTo(nodoActual.getValor());
+            if(comparador == 0)
+                return nodoActual;
+            
+            else if(comparador < 0)
+                return buscar(nodoActual.getHi(),valor);
+            else
+                return buscar(nodoActual.getHd(),valor);
         }
-        else{ 
-            return buscar(nodoActual.getNodoDerecha(), valor);
-        }
+        else
+            return null;
     }
     
-    public void eliminar(int valor) {
-        this.raiz = eliminarRecursivo(raiz, valor);
+    public void eliminar(T valor) {
+        this.raiz = eliminar(raiz, valor);
     }
 
-    // --- MÉTODO PRIVADO RECURSIVO ---
-    private NodoArbol eliminarRecursivo(NodoArbol nodoActual, int valor) {
-        // Caso base: Si llegamos a null, el valor no existe en el árbol
-        if (nodoActual == null) {
-            return null;
-        }
+    private NodoArbol<T> eliminar(NodoArbol<T> nodoActual, T valor) {
+        if(nodoActual != null){
+            int comparador = valor.compareTo(nodoActual.getValor());
+            if(comparador < 0 )
+                nodoActual.setHi(eliminar(nodoActual.getHi(), valor));
+            else{
+                if(comparador > 0)
+                 nodoActual.setHd(eliminar(nodoActual.getHd(), valor));
+                else{
+                    if(nodoActual.getHi() == null)
+                        return nodoActual.getHd();
+                    else{
+                        if(nodoActual.getHd() == null)
+                            return nodoActual.getHi();
+                        else
+                            nodoActual.setValor(this.buscarMin(nodoActual.getHd()));
+                            
+                    }
 
-        // 1. PRIMERO BUSCAMOS EL NODO
-        if (valor < nodoActual.getValor()) {
-            nodoActual.setNodoIzquierda(eliminarRecursivo(nodoActual.getNodoIzquierda(), valor));
-        } else if (valor > nodoActual.getValor()) {
-            nodoActual.setNodoDerecha(eliminarRecursivo(nodoActual.getNodoDerecha(), valor));
-        } else {
-            // ¡LO ENCONTRAMOS! (valor == nodoActual.getValor())
-            // Ahora aplicamos los 3 casos:
-
-            // CASO 1 y 2: Sin hijos o con un solo hijo
-            if (nodoActual.getNodoIzquierda() == null) {
-                return nodoActual.getNodoDerecha(); // Devuelve el hijo derecho (o null si no tiene)
-            } else if (nodoActual.getNodoDerecha() == null) {
-                return nodoActual.getNodoIzquierda(); // Devuelve el hijo izquierdo
+                }
             }
-
-            // CASO 3: Tiene DOS hijos
-            // Buscamos el sucesor (el valor más pequeño del subárbol derecho)
-            int valorMasPequeno = encontrarMinimo(nodoActual.getNodoDerecha());
-            
-            // Reemplazamos el valor del nodo actual por el del sucesor
-            nodoActual.setValor(valorMasPequeno);
-            
-            // Ahora eliminamos el nodo antiguo del sucesor (que ya copiamos)
-            nodoActual.setNodoDerecha(eliminarRecursivo(nodoActual.getNodoDerecha(), valorMasPequeno));
         }
-        return nodoActual;
+        return null;
     }
 
-    // Método auxiliar para encontrar el valor más pequeño (irse todo a la izquierda)
-    private int encontrarMinimo(NodoArbol nodo) {
-        int minimo = nodo.getValor();
-        while (nodo.getNodoIzquierda() != null) {
-            minimo = nodo.getNodoIzquierda().getValor();
-            nodo = nodo.getNodoIzquierda();
+        public NodoArbol<T> eliminarMin(){
+            
         }
-        return minimo;
-    }
+        
+
     public int getAltura() {
-        return getAlturaRecursivo(this.raiz);
+        return getAlturaRecursivo(raiz);
     }
 
     // --- PRIVADO ---
-    private int getAlturaRecursivo(NodoArbol nodo) {
+    private int getAlturaRecursivo(NodoArbol<T> nodo) {
         if (nodo == null) {
             return 0; // Si no hay nodo, la altura es 0
         }

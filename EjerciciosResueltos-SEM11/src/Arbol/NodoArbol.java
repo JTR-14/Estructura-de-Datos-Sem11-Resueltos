@@ -4,55 +4,40 @@
  */
 package Arbol;
 
-public class NodoArbol {
+public class NodoArbol<T> {
     
-    private int valor;
-    private NodoArbol nodoIzquierda;
-    private NodoArbol nodoDerecha;
+    private T valor;
+    private NodoArbol<T> hi;
+    private NodoArbol<T> hd;
     
-    public NodoArbol(int valor) {
+    public NodoArbol(T valor) {
         this.valor = valor;
-        this.nodoDerecha = null;
-        this.nodoIzquierda = null;        
+        this.hd = null;
+        this.hi = null;        
     }
-    
-    public void setValor(int valor) {
-        this.valor = valor;
-    }
-    
-    public int getValor() {
+
+    public T getValor() {
         return valor;
     }
-    
-    public NodoArbol getNodoIzquierda() {
-        return nodoIzquierda;
-    }
-    
-    public NodoArbol getNodoDerecha() {
-        return nodoDerecha;
-    }
-    
-    
-    /*public void insertar(int valor) {
-        if (valor < this.valor) {
-            if (this.nodoIzquierda == null) 
-                nodoIzquierda = new NodoArbol(valor);
-             else 
-                nodoIzquierda.insertar(valor);
-            
-        } else {
-            if (this.nodoDerecha == null) 
-                nodoDerecha = new NodoArbol(valor);
-             else 
-                nodoDerecha.insertar(valor);  
-        }
-    }*/
 
-    public void setNodoIzquierda(NodoArbol nodoIzquierda) {
-        this.nodoIzquierda = nodoIzquierda;
+    public void setValor(T valor) {
+        this.valor = valor;
     }
 
-    public void setNodoDerecha(NodoArbol nodoDerecha) {
-        this.nodoDerecha = nodoDerecha;
+    public NodoArbol<T> getHi() {
+        return hi;
     }
+
+    public void setHi(NodoArbol<T> hi) {
+        this.hi = hi;
+    }
+
+    public NodoArbol<T> getHd() {
+        return hd;
+    }
+
+    public void setHd(NodoArbol<T> hd) {
+        this.hd = hd;
+    }
+   
 }
