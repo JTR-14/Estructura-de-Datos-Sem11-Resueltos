@@ -4,17 +4,18 @@
  */
 package Ejercicio02_Resuelto;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author USER
  */
 public class FrmEjercicio02 extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmEjercicio02
-     */
+    DefaultTableModel modelo = new DefaultTableModel();
     public FrmEjercicio02() {
         initComponents();
+        tblEmpleados.setModel(modelo);
     }
 
     /**
@@ -240,4 +241,6 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombres;
     private javax.swing.JTextField txtSueldo;
     // End of variables declaration//GEN-END:variables
+    private String codigo,nombres, apellidos, sexo;
+    private double sueldo;
 }
