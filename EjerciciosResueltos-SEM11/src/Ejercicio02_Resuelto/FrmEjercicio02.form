@@ -136,7 +136,7 @@
                               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                               <Component id="btnEliminar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                              <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnLimpiar" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="35" max="32767" attributes="0"/>
@@ -163,7 +163,7 @@
                           <Component id="btnConsultar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnActualizar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -247,46 +247,73 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="GUARDAR"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnConsultar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="CONSULTAR"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnActualizar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="ACTUALIZAR"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnEliminar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="ELIMINAR"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnCancelar">
+            <Component class="javax.swing.JButton" name="btnLimpiar">
               <Properties>
-                <Property name="text" type="java.lang.String" value="CANCELAR"/>
+                <Property name="text" type="java.lang.String" value="LIMPIAR"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimpiarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnPreOrden">
               <Properties>
                 <Property name="text" type="java.lang.String" value="PRE ORDEN"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPreOrdenActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnEnOrden">
               <Properties>
                 <Property name="text" type="java.lang.String" value="EN ORDEN"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEnOrdenActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnPostOrden">
               <Properties>
                 <Property name="text" type="java.lang.String" value="POST ORDEN"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPostOrdenActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnSalir">
               <Properties>
                 <Property name="text" type="java.lang.String" value="SALIR"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalirActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

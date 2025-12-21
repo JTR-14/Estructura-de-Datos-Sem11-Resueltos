@@ -16,6 +16,7 @@ public class NodoArbol<T> {
         this.hi = null;        
     }
 
+
     public T getValor() {
         return valor;
     }

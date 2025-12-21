@@ -12,6 +12,15 @@ public class ListarEmpleados {
     
     Arbol<Empleado> lista = new Arbol<>();
     
+    public void insertar(Empleado empleado){
+        lista.insertar(empleado);
+    }
+    public void eliminar(Empleado empleado){
+        lista.eliminar(empleado);
+    }
+    public NodoArbol<Empleado> consultar(Empleado empleado){
+        return lista.buscar(empleado);
+    }
     public void agregarFila(DefaultTableModel modelo, Empleado empleado){
         Object fila [] = {empleado.getCodigo(), empleado.getNombres(), empleado.getApellidos(), empleado.getSexo(), empleado.getSueldo()};
         modelo.addRow(fila);

@@ -4,15 +4,20 @@
  */
 package Ejercicio02_Resuelto;
 
+import Arbol.NodoArbol;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author USER
+ * @author Toledo
  */
 public class FrmEjercicio02 extends javax.swing.JFrame {
 
     DefaultTableModel modelo = new DefaultTableModel();
+    ListarEmpleados lista = new ListarEmpleados();
+    NodoArbol<Empleado> nodo;
+    
     public FrmEjercicio02() {
         initComponents();
         tblEmpleados.setModel(modelo);
@@ -38,7 +43,7 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
         btnConsultar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
         btnPreOrden = new javax.swing.JButton();
         btnEnOrden = new javax.swing.JButton();
         btnPostOrden = new javax.swing.JButton();
@@ -66,22 +71,67 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
         cmbSexo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sexo:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Emoji", 1, 12))); // NOI18N
 
         btnGuardar.setText("GUARDAR");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnConsultar.setText("CONSULTAR");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
 
         btnActualizar.setText("ACTUALIZAR");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
-        btnCancelar.setText("CANCELAR");
+        btnLimpiar.setText("LIMPIAR");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         btnPreOrden.setText("PRE ORDEN");
+        btnPreOrden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPreOrdenActionPerformed(evt);
+            }
+        });
 
         btnEnOrden.setText("EN ORDEN");
+        btnEnOrden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnOrdenActionPerformed(evt);
+            }
+        });
 
         btnPostOrden.setText("POST ORDEN");
+        btnPostOrden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPostOrdenActionPerformed(evt);
+            }
+        });
 
         btnSalir.setText("SALIR");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -125,7 +175,7 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
                         .addGap(43, 43, 43)
                         .addComponent(btnEliminar)
                         .addGap(39, 39, 39)
-                        .addComponent(btnCancelar)))
+                        .addComponent(btnLimpiar)))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -146,7 +196,7 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
                     .addComponent(btnConsultar)
                     .addComponent(btnActualizar)
                     .addComponent(btnEliminar)
-                    .addComponent(btnCancelar))
+                    .addComponent(btnLimpiar))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPreOrden)
@@ -215,19 +265,162 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-   
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        codigo = txtCodigo.getText().trim();
+        nombres = txtNombres.getText().trim();
+        apellidos = txtApellidos.getText().trim();
+        
+        if(codigo.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese codigo del empleado","AVISO",2);
+            return;
+        }
+        if(nombres.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese nombre del empleado", "AVISO", 2);
+            return;
+        }
+        if(apellidos.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese apellidos del empleado", "AVISO", 2);
+            return;
+        }
+        if(cmbSexo.getSelectedIndex() == 0){
+            JOptionPane.showMessageDialog(null, "Seleccione sexo del empleado", "AVISO", 2);
+            return;
+        }
+        if(txtSueldo.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese sueldo del empleado", "AVISO", 2);
+            return;
+        }
+        sexo = String.valueOf(cmbSexo.getSelectedItem().toString());
+        try{
+        sueldo = Double.parseDouble(txtSueldo.getText());
+            if(sueldo<0){
+                JOptionPane.showMessageDialog(null, "El sueldo no puede ser negativo","Aviso",0);
+                return;
+            }
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "El campo sueldo solo acepta numeros (ej: 1460.50)","Aviso",0);
+            txtSueldo.setText("");
+            return;
+        }
+        Empleado empleado = new Empleado(codigo, nombres,apellidos, sexo, sueldo);
+        lista.insertar(empleado);
+        lista.mostrarEnOrden(modelo);
+        limpiar();
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnPreOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreOrdenActionPerformed
+        lista.mostrarPreOrden(modelo);
+    }//GEN-LAST:event_btnPreOrdenActionPerformed
+
+    private void btnEnOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnOrdenActionPerformed
+        lista.mostrarEnOrden(modelo);
+    }//GEN-LAST:event_btnEnOrdenActionPerformed
+
+    private void btnPostOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostOrdenActionPerformed
+        lista.mostrarPostOrden(modelo);
+    }//GEN-LAST:event_btnPostOrdenActionPerformed
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        codigo = JOptionPane.showInputDialog(null,"Ingrese codigo a buscar: ","Mensaje", 1);
+        if(codigo == null || codigo.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe ingresar codigo","Aviso",2);
+            return;
+        }
+        Empleado empleadoBuscado = new Empleado(codigo);
+        nodo = lista.consultar(empleadoBuscado);
+        if(nodo != null){
+                Empleado empleadoEncontrado = nodo.getValor();
+                txtCodigo.setText(empleadoEncontrado.getCodigo());
+                txtNombres.setText(empleadoEncontrado.getNombres());
+                txtApellidos.setText(empleadoEncontrado.getApellidos());
+                if(empleadoEncontrado.getSexo().equals("MASCULINO"))
+                    cmbSexo.setSelectedIndex(1);
+                else
+                    cmbSexo.setSelectedIndex(2);
+                txtSueldo.setText(String.valueOf(empleadoEncontrado.getSueldo()));
+                activarOpcionesConsulta(true);
+        }
+        else
+            JOptionPane.showMessageDialog(null, "No se encontro un empleado con ese codigo", "Aviso", 0);
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        limpiar();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        codigo = txtCodigo.getText().trim();
+        nombres = txtNombres.getText().trim();
+        apellidos = txtApellidos.getText().trim();
+        
+        if(codigo.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese codigo del empleado","AVISO",2);
+            return;
+        }
+        if(nombres.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese nombre del empleado", "AVISO", 2);
+            return;
+        }
+        if(apellidos.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese apellidos del empleado", "AVISO", 2);
+            return;
+        }
+        if(cmbSexo.getSelectedIndex() == 0){
+            JOptionPane.showMessageDialog(null, "Seleccione sexo del empleado", "AVISO", 2);
+            return;
+        }
+        if(txtSueldo.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese sueldo del empleado", "AVISO", 2);
+            return;
+        }
+        sexo = String.valueOf(cmbSexo.getSelectedItem().toString());
+        sueldo = Double.parseDouble(txtSueldo.getText());
+        Empleado empleado = new Empleado(codigo, nombres,apellidos, sexo, sueldo);
+        nodo.setValor(empleado);
+        lista.mostrarEnOrden(modelo);
+        activarOpcionesConsulta(false);
+        limpiar();
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int opcion = JOptionPane.showConfirmDialog(null, "¿Desea eliminar este Empleado?","Mensaje",JOptionPane.YES_NO_OPTION);
+        if(opcion == JOptionPane.YES_OPTION){
+            lista.eliminar(nodo.getValor());
+            JOptionPane.showMessageDialog(null, "Eliminado Correctamente","Mensaje",1);
+            lista.mostrarEnOrden(modelo);
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Operacion cancelada");
+
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void activarOpcionesConsulta(boolean estado){
+        btnActualizar.setEnabled(estado);
+        btnEliminar.setEnabled(estado);
+        btnGuardar.setEnabled(!estado);
+        btnConsultar.setEnabled(!estado);
+    }
+   
+    private void limpiar(){
+        txtCodigo.setText("");
+        txtNombres.setText("");
+        txtApellidos.setText("");
+        cmbSexo.setSelectedIndex(0);
+        txtSueldo.setText("");
+        txtCodigo.requestFocus();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private javax.swing.JButton btnActualizar;
-    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnEnOrden;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnPostOrden;
     private javax.swing.JButton btnPreOrden;
     private javax.swing.JButton btnSalir;

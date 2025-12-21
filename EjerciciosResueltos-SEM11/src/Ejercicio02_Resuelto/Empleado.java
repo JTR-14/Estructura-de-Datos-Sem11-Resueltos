@@ -19,7 +19,9 @@ public class Empleado implements Comparable<Empleado> {
         this.sexo = sexo;
         this.sueldo = sueldo;
     }
-
+    public Empleado(String codigo){
+        this.codigo = codigo;
+    }
     public String getCodigo() {
         return codigo;
     }
