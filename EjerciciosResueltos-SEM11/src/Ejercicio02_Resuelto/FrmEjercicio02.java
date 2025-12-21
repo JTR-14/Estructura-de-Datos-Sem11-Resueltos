@@ -373,8 +373,15 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Seleccione sexo del empleado", "AVISO", 2);
             return;
         }
-        if(txtSueldo.getText().trim().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Ingrese sueldo del empleado", "AVISO", 2);
+        try{
+        sueldo = Double.parseDouble(txtSueldo.getText());
+            if(sueldo<0){
+                JOptionPane.showMessageDialog(null, "El sueldo no puede ser negativo","Aviso",0);
+                return;
+            }
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "El campo sueldo solo acepta numeros (ej: 1460.50)","Aviso",0);
+            txtSueldo.setText("");
             return;
         }
         sexo = String.valueOf(cmbSexo.getSelectedItem().toString());
