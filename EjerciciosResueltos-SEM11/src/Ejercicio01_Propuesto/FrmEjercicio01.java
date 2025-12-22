@@ -304,12 +304,13 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        codigo = JOptionPane.showInputDialog(null,"Ingrese codigo a buscar: ","Mensaje", 1).trim();
+        codigo = JOptionPane.showInputDialog(null,"Ingrese codigo a buscar: ","Mensaje", 1);
         if(codigo == null)
             return;
-        
+        codigo = codigo.trim();
         if(codigo.isEmpty()){
            JOptionPane.showMessageDialog(null, "Debe ingresar codigo","Aviso",2);
+           return;
         }
         Curso cursoBuscado = new Curso(codigo);
         nodo = lista.buscarCurso(cursoBuscado);

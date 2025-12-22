@@ -21,6 +21,9 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
     
     public FrmEjercicio02() {
         initComponents();
+        lstPreorden.setModel(preOrden);
+        lstPostorden.setModel(postOrden);
+        lstEnorden.setModel(enOrden);
     }
 
     /**
@@ -43,11 +46,10 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
         lstEnorden = new javax.swing.JList<>();
         jScrollPane3 = new javax.swing.JScrollPane();
         lstPostorden = new javax.swing.JList<>();
-        btnEliminar = new javax.swing.JButton();
         btnSumar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnNumeroHojas = new javax.swing.JButton();
+        btnProfundidad = new javax.swing.JButton();
+        btnResultados = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         txaBotones = new javax.swing.JTextArea();
 
@@ -77,23 +79,31 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
         lstPostorden.setBorder(javax.swing.BorderFactory.createTitledBorder("POSTORDEN:"));
         jScrollPane3.setViewportView(lstPostorden);
 
-        btnEliminar.setText("ELIMINAR");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+        btnSumar.setText("SUMAR");
+        btnSumar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
+                btnSumarActionPerformed(evt);
             }
         });
 
-        btnSumar.setText("SUMAR");
-
-        jButton2.setText("N° HOJAS");
-
-        jButton3.setText("PROFUNDIDAD");
-
-        jButton4.setText("RESULTADOS");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnNumeroHojas.setText("N° HOJAS");
+        btnNumeroHojas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnNumeroHojasActionPerformed(evt);
+            }
+        });
+
+        btnProfundidad.setText("PROFUNDIDAD");
+        btnProfundidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProfundidadActionPerformed(evt);
+            }
+        });
+
+        btnResultados.setText("RESULTADOS");
+        btnResultados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResultadosActionPerformed(evt);
             }
         });
 
@@ -117,9 +127,7 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
                                 .addGap(33, 33, 33)
                                 .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(48, 48, 48)
-                                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                                    .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(bgLayout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -131,10 +139,10 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(bgLayout.createSequentialGroup()
                                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButton3)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(btnProfundidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnNumeroHojas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnResultados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addComponent(btnSumar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -154,10 +162,8 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
                             .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(bgLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(btnAgregar)))
-                .addGap(18, 18, 18)
-                .addComponent(btnEliminar)
-                .addGap(36, 36, 36)
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(69, 69, 69)
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -167,11 +173,11 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
                     .addGroup(bgLayout.createSequentialGroup()
                         .addComponent(btnSumar)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(btnNumeroHojas)
                         .addGap(25, 25, 25)
-                        .addComponent(jButton3)
+                        .addComponent(btnProfundidad)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4))
+                        .addComponent(btnResultados))
                     .addComponent(jScrollPane4))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
@@ -212,15 +218,35 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
         txtValor.requestFocus();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        String eliminado =JOptionPane.showInputDialog(null, "Ingrese numero entero a eliminar","AVISO",1);
-        if(eliminado == null)   
+    private void btnResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResultadosActionPerformed
+        txaBotones.setText("");
+        txaBotones.setText(lista.resultado());
+    }//GEN-LAST:event_btnResultadosActionPerformed
+
+    private void btnSumarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSumarActionPerformed
+        int suma = lista.sumarValores();
+        txaBotones.setText("");
+        txaBotones.setText("La suma total es: " + String.valueOf(suma));
+    }//GEN-LAST:event_btnSumarActionPerformed
+
+    private void btnNumeroHojasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNumeroHojasActionPerformed
+        int nHojas = lista.contarHojas();
+        txaBotones.setText("");
+        txaBotones.setText("La cantidad de hojas en el arbol es: " + String.valueOf(nHojas));
+        
+    }//GEN-LAST:event_btnNumeroHojasActionPerformed
+
+    private void btnProfundidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfundidadActionPerformed
+        String numero =JOptionPane.showInputDialog(null, "Ingrese numero para hallar profundidad","AVISO",1);
+        if(numero == null)   
             return;
-        if(eliminado.trim().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Ingrese numero a eliminar","Aviso",2);
+        if(numero.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese numero","Aviso",2);
+            return;
         }
+        
         try{
-            entero = Integer.valueOf(eliminado.trim());
+            entero = Integer.valueOf(numero.trim());
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null, "Solo se acepta un numero entero", "Aviso", 1);
             txtValor.setText("");
@@ -228,16 +254,13 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
         }
 
         if(lista.buscar(entero)!= null){
-            lista.eliminar(entero);
-            JOptionPane.showMessageDialog(null, "El numero fue eliminado","Mensaje",1);
+                int profundidad = lista.obtenerProfundidad(entero);
+                txaBotones.setText("");
+                txaBotones.setText("La profundidad de nodo "+ entero + " es: " + String.valueOf(profundidad));
         }
         else
-        JOptionPane.showMessageDialog(null, "El numero no fue eliminado","Mensaje",0);
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
-    }//GEN-LAST:event_jButton4ActionPerformed
+            JOptionPane.showMessageDialog(null, "El numero ingresado no se encuentra en el arbol","Aviso",2 );
+    }//GEN-LAST:event_btnProfundidadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,11 +270,10 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnNumeroHojas;
+    private javax.swing.JButton btnProfundidad;
+    private javax.swing.JButton btnResultados;
     private javax.swing.JButton btnSumar;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
