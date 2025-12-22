@@ -33,9 +33,9 @@ public class ListarEmpleados {
          modelo.setColumnIdentifiers(titulos);
          limpiarTabla(modelo);
          ArrayList<Empleado> listaEmpleados = lista.enOrdenTabla();
-         for(Empleado e: listaEmpleados){
+         for(Empleado e: listaEmpleados)
              agregarFila(modelo,e);
-         }
+         
      }
      
      public void mostrarPreOrden(DefaultTableModel modelo){
@@ -43,9 +43,9 @@ public class ListarEmpleados {
          modelo.setColumnIdentifiers(titulos);
          limpiarTabla(modelo);
          ArrayList<Empleado> listaEmpleados = lista.preOrdenTabla();
-         for(Empleado e: listaEmpleados){
+         for(Empleado e: listaEmpleados)
              agregarFila(modelo,e);
-         }
+         
      }
      
      public void mostrarPostOrden(DefaultTableModel modelo){
@@ -53,8 +53,8 @@ public class ListarEmpleados {
          modelo.setColumnIdentifiers(titulos);
          limpiarTabla(modelo);
          ArrayList<Empleado> listaEmpleados = lista.postOrdenTabla();
-         for(Empleado e: listaEmpleados){
+         for(Empleado e: listaEmpleados)
              agregarFila(modelo,e);
-         }
+         
      }
 }

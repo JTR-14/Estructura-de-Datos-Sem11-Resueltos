@@ -47,6 +47,7 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         txaResultado = new javax.swing.JTextArea();
+        btnResultado = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ARBOL BINARIO DE BUSQUEDA");
@@ -93,6 +94,13 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
         txaResultado.setRows(5);
         jScrollPane4.setViewportView(txaResultado);
 
+        btnResultado.setText("RESULTADO");
+        btnResultado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResultadoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
         bgLayout.setHorizontalGroup(
@@ -121,7 +129,8 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
                             .addGroup(bgLayout.createSequentialGroup()
                                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnResultado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(44, 44, 44)
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
@@ -146,16 +155,16 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
                     .addComponent(jScrollPane2)
                     .addComponent(jScrollPane3)
                     .addComponent(jScrollPane1))
-                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(46, 46, 46)
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(bgLayout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(bgLayout.createSequentialGroup()
-                        .addGap(66, 66, 66)
                         .addComponent(btnBuscar)
                         .addGap(18, 18, 18)
-                        .addComponent(btnEliminar)))
-                .addContainerGap(68, Short.MAX_VALUE))
+                        .addComponent(btnEliminar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnResultado))
+                    .addComponent(jScrollPane4))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -216,7 +225,7 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
         if(nodo != null)
             JOptionPane.showMessageDialog(null, "El dato si se encuentra en la lista","Mensaje",1);
         else
-             JOptionPane.showMessageDialog(null, "El dato si se encuentra en la lista","Mensaje",1);
+             JOptionPane.showMessageDialog(null, "El dato no se encuentra en la lista","Mensaje",1);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -232,12 +241,18 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
             txtValor.setText("");
             return;
         }
-        lista.eliminar(entero);
-        if(nodo != null)
-            JOptionPane.showMessageDialog(null, "El dato si se encuentra en la lista","Mensaje",1);
+        
+        if(lista.buscar(entero)!= null){
+            lista.eliminar(entero);
+            JOptionPane.showMessageDialog(null, "El numero fue eliminado","Mensaje",1);
+        }
         else
-             JOptionPane.showMessageDialog(null, "El dato si se encuentra en la lista","Mensaje",1);
+            JOptionPane.showMessageDialog(null, "El numero no fue eliminado","Mensaje",0);
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResultadoActionPerformed
+        txaResultado.setText(lista.resultado());
+    }//GEN-LAST:event_btnResultadoActionPerformed
 
 
 
@@ -246,6 +261,7 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnResultado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

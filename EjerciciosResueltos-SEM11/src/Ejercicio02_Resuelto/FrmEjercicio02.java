@@ -85,6 +85,7 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
         });
 
         btnActualizar.setText("ACTUALIZAR");
+        btnActualizar.setEnabled(false);
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
@@ -92,6 +93,7 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
         });
 
         btnEliminar.setText("ELIMINAR");
+        btnEliminar.setEnabled(false);
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -325,10 +327,12 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPostOrdenActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        codigo = JOptionPane.showInputDialog(null,"Ingrese codigo a buscar: ","Mensaje", 1);
-        if(codigo == null || codigo.trim().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Debe ingresar codigo","Aviso",2);
+        codigo = JOptionPane.showInputDialog(null,"Ingrese codigo a buscar: ","Mensaje", 1).trim();
+        if(codigo == null)
             return;
+        
+        if(codigo.isEmpty()){
+           JOptionPane.showMessageDialog(null, "Debe ingresar codigo","Aviso",2);
         }
         Empleado empleadoBuscado = new Empleado(codigo);
         nodo = lista.consultar(empleadoBuscado);
@@ -399,6 +403,7 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
             lista.eliminar(nodo.getValor());
             JOptionPane.showMessageDialog(null, "Eliminado Correctamente","Mensaje",1);
             lista.mostrarEnOrden(modelo);
+            limpiar();
         }
         else
             JOptionPane.showMessageDialog(null, "Operacion cancelada");

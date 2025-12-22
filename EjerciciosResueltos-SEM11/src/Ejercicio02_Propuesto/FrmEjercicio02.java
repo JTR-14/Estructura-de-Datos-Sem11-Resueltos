@@ -4,15 +4,21 @@
  */
 package Ejercicio02_Propuesto;
 
+import Arbol.Arbol;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author USER
  */
 public class FrmEjercicio02 extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmEjercicio02
-     */
+    DefaultListModel postOrden = new DefaultListModel();
+    DefaultListModel preOrden = new DefaultListModel();
+    DefaultListModel enOrden = new DefaultListModel();
+    Arbol<Integer> lista = new Arbol<>();
+    
     public FrmEjercicio02() {
         initComponents();
     }
@@ -27,20 +33,147 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
     private void initComponents() {
 
         bg = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtValor = new javax.swing.JTextField();
+        btnAgregar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lstPreorden = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lstEnorden = new javax.swing.JList<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        lstPostorden = new javax.swing.JList<>();
+        btnEliminar = new javax.swing.JButton();
+        btnSumar = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txaBotones = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI Emoji", 1, 24)); // NOI18N
+        jLabel1.setText("ARBOL BINARIO DE ENTEROS");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 14)); // NOI18N
+        jLabel2.setText("Valor:");
+
+        btnAgregar.setText("AGREGAR");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+
+        lstPreorden.setBorder(javax.swing.BorderFactory.createTitledBorder("PREORDEN:"));
+        jScrollPane1.setViewportView(lstPreorden);
+
+        lstEnorden.setBorder(javax.swing.BorderFactory.createTitledBorder("ENORDEN:"));
+        jScrollPane2.setViewportView(lstEnorden);
+
+        lstPostorden.setBorder(javax.swing.BorderFactory.createTitledBorder("POSTORDEN:"));
+        jScrollPane3.setViewportView(lstPostorden);
+
+        btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        btnSumar.setText("SUMAR");
+
+        jButton2.setText("N° HOJAS");
+
+        jButton3.setText("PROFUNDIDAD");
+
+        jButton4.setText("RESULTADOS");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        txaBotones.setColumns(20);
+        txaBotones.setFont(new java.awt.Font("Segoe UI Emoji", 1, 12)); // NOI18N
+        txaBotones.setRows(5);
+        jScrollPane4.setViewportView(txaBotones);
+
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
         bgLayout.setHorizontalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
+            .addGroup(bgLayout.createSequentialGroup()
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(bgLayout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(48, 48, 48)
+                                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                                    .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(bgLayout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(bgLayout.createSequentialGroup()
+                                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jButton3)
+                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnSumar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)))))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 351, Short.MAX_VALUE)
+            .addGroup(bgLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel1)
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAgregar)))
+                .addGap(18, 18, 18)
+                .addComponent(btnEliminar)
+                .addGap(36, 36, 36)
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addComponent(btnSumar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addGap(25, 25, 25)
+                        .addComponent(jButton3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4))
+                    .addComponent(jScrollPane4))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -51,11 +184,60 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        if(txtValor.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese el número","Aviso",2);
+            return;
+        }
+        try{
+            entero = Integer.valueOf(txtValor.getText().trim());
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Solo se permite el ingreso de numeros enteros","Aviso",2);
+            txtValor.setText("");
+            return;
+        }
+        lista.insertar(entero);
+        lista.inOrden(enOrden);
+        lista.preOrden(preOrden);
+        lista.postOrden(postOrden);
+        txtValor.setText("");
+        txtValor.requestFocus();
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        String eliminado =JOptionPane.showInputDialog(null, "Ingrese numero entero a eliminar","AVISO",1);
+        if(eliminado == null)   
+            return;
+        if(eliminado.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese numero a eliminar","Aviso",2);
+        }
+        try{
+            entero = Integer.valueOf(eliminado.trim());
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Solo se acepta un numero entero", "Aviso", 1);
+            txtValor.setText("");
+            return;
+        }
+
+        if(lista.buscar(entero)!= null){
+            lista.eliminar(entero);
+            JOptionPane.showMessageDialog(null, "El numero fue eliminado","Mensaje",1);
+        }
+        else
+        JOptionPane.showMessageDialog(null, "El numero no fue eliminado","Mensaje",0);
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -64,5 +246,23 @@ public class FrmEjercicio02 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnSumar;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JList<String> lstEnorden;
+    private javax.swing.JList<String> lstPostorden;
+    private javax.swing.JList<String> lstPreorden;
+    private javax.swing.JTextArea txaBotones;
+    private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
+    private Integer entero;
 }

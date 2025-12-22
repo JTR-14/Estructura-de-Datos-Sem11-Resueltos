@@ -246,5 +246,53 @@ public class Arbol<T extends Comparable<T>> {
             lista.add(nodo.getValor());   
         }
     }
-   
+    public int sumarValores() {
+        return sumarValores(raiz);
+    }
+
+    private int sumarValores(NodoArbol<T> nodo) {
+        if (nodo == null) {
+            return 0;
+        }
+        int valorActual = (Integer) nodo.getValor();
+        return valorActual + sumarValores(nodo.getHi()) + sumarValores(nodo.getHd());
+    }
+
+    public int contarHojas() {
+        return contarHojas(raiz);
+    }
+
+    private int contarHojas(NodoArbol<T> nodo) {
+        if (nodo == null) {
+            return 0;
+        }
+        if (nodo.getHi() == null && nodo.getHd() == null) {
+            return 1;
+        }
+        return contarHojas(nodo.getHi()) + contarHojas(nodo.getHd());
+    }
+
+    public int obtenerProfundidad(T valorBuscado) {
+        return obtenerProfundidad(raiz, valorBuscado, 0);
+    }
+
+    private int obtenerProfundidad(NodoArbol<T> nodo, T valor, int nivelActual) {
+        if (nodo == null) {
+            return -1;
+        }
+        int comparacion = valor.compareTo(nodo.getValor());
+        if (comparacion == 0) {
+            return nivelActual;
+        } else if (comparacion < 0) {
+            return obtenerProfundidad(nodo.getHi(), valor, nivelActual + 1);
+        } else {
+            return obtenerProfundidad(nodo.getHd(), valor, nivelActual + 1);
+        }
+    }
+   public String resultado(){
+       return "El mayor es: " + buscarMax() + "\n" +
+                    "El menor es: " + buscarMin() + "\n" +
+                    "Número de Nodos: " + cantidadNodos() + "\n" +
+                    "Altura del Árbol: " + altura();
+   }
 }

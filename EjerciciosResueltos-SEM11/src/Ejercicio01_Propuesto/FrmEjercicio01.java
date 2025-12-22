@@ -4,6 +4,10 @@
  */
 package Ejercicio01_Propuesto;
 
+import Arbol.NodoArbol;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -11,11 +15,12 @@ package Ejercicio01_Propuesto;
  */
 public class FrmEjercicio01 extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmEjercicio02
-     */
+    DefaultTableModel modelo = new DefaultTableModel();
+    ListarCursos lista = new ListarCursos();
+    NodoArbol<Curso> nodo;
     public FrmEjercicio01() {
         initComponents();
+        tblCursos.setModel(modelo);
     }
 
     /**
@@ -28,37 +33,376 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
     private void initComponents() {
 
         bg = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        txtCodigo = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        txtCarrera = new javax.swing.JTextField();
+        cmbCiclo = new javax.swing.JComboBox<>();
+        btnGuardar = new javax.swing.JButton();
+        btnConsultar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
+        btnPreOrden = new javax.swing.JButton();
+        btnEnOrden = new javax.swing.JButton();
+        btnPostOrden = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
+        cmbCreditos = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblCursos = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Curso:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Emoji", 1, 14))); // NOI18N
+
+        txtCodigo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Codigo:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Emoji", 1, 12))); // NOI18N
+
+        txtNombre.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nombre:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Emoji", 1, 12))); // NOI18N
+
+        txtCarrera.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Carrera:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Emoji", 1, 12))); // NOI18N
+
+        cmbCiclo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--SELECCIONE--", "I CICLO", "II CICLO", "III CICLO", "IV CICLO", "V CICLO", "VI CICLO", "VII CICLO", "VIII CICLO", "IX CICLO", "X CICLO", "XI CICLO", "XII CICLO" }));
+        cmbCiclo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ciclo:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Emoji", 1, 12))); // NOI18N
+
+        btnGuardar.setText("GUARDAR");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+
+        btnConsultar.setText("CONSULTAR");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
+
+        btnActualizar.setText("ACTUALIZAR");
+        btnActualizar.setEnabled(false);
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
+
+        btnEliminar.setText("ELIMINAR");
+        btnEliminar.setEnabled(false);
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        btnLimpiar.setText("LIMPIAR");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
+        btnPreOrden.setText("PRE ORDEN");
+        btnPreOrden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPreOrdenActionPerformed(evt);
+            }
+        });
+
+        btnEnOrden.setText("EN ORDEN");
+        btnEnOrden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnOrdenActionPerformed(evt);
+            }
+        });
+
+        btnPostOrden.setText("POST ORDEN");
+        btnPostOrden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPostOrdenActionPerformed(evt);
+            }
+        });
+
+        btnSalir.setText("SALIR");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+
+        cmbCreditos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--SELECCIONE--", "1 Crédito", "2 Créditos", "3 Créditos", "4 Créditos", "5 Créditos", "6 Créditos" }));
+        cmbCreditos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Creditos:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Emoji", 1, 12))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(btnPreOrden)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnEnOrden)
+                .addGap(54, 54, 54)
+                .addComponent(btnPostOrden)
+                .addGap(53, 53, 53)
+                .addComponent(btnSalir)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnGuardar)
+                                .addGap(55, 55, 55)
+                                .addComponent(btnConsultar)
+                                .addGap(34, 34, 34))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(cmbCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(7, 7, 7)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(7, 7, Short.MAX_VALUE)
+                                .addComponent(btnActualizar)
+                                .addGap(62, 62, 62)
+                                .addComponent(btnEliminar)
+                                .addGap(40, 40, 40)
+                                .addComponent(btnLimpiar)
+                                .addGap(26, 26, 26))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(83, 83, 83)
+                                .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cmbCiclo, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbCiclo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGuardar)
+                    .addComponent(btnConsultar)
+                    .addComponent(btnActualizar)
+                    .addComponent(btnEliminar)
+                    .addComponent(btnLimpiar))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPreOrden)
+                    .addComponent(btnEnOrden)
+                    .addComponent(btnPostOrden)
+                    .addComponent(btnSalir))
+                .addGap(33, 33, 33))
+        );
+
+        tblCursos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tblCursos);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
+        jLabel1.setText("ARBOL DE CURSOS");
+
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
         bgLayout.setHorizontalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 504, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(212, 212, 212))
+            .addGroup(bgLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 727, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 351, Short.MAX_VALUE)
+            .addGroup(bgLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        codigo = txtCodigo.getText().trim();
+        nombre = txtNombre.getText().trim();
+        carrera = txtCarrera.getText().trim();
+
+        if(codigo.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese codigo del curso","AVISO",2);
+            return;
+        }
+        if(nombre.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese nombre del curso", "AVISO", 2);
+            return;
+        }
+        if(cmbCiclo.getSelectedIndex() == 0){
+            JOptionPane.showMessageDialog(null, "Seleccione ciclo academico", "AVISO", 2);
+            return;
+        }if(cmbCreditos.getSelectedIndex() == 0){
+            JOptionPane.showMessageDialog(null, "Seleccione N° de creditos", "AVISO", 2);
+            return;
+        }
+        if(carrera.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese nombre de la carrera", "AVISO", 2);
+            return;
+        }
+        ciclo = cmbCiclo.getSelectedItem().toString();
+        creditos = cmbCreditos.getSelectedItem().toString();
+
+        Curso curso = new Curso(codigo, nombre,ciclo, creditos, carrera);
+        lista.insertarCurso(curso);
+        lista.enOrden(modelo);
+        limpiar();
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        codigo = JOptionPane.showInputDialog(null,"Ingrese codigo a buscar: ","Mensaje", 1).trim();
+        if(codigo == null)
+            return;
+        
+        if(codigo.isEmpty()){
+           JOptionPane.showMessageDialog(null, "Debe ingresar codigo","Aviso",2);
+        }
+        Curso cursoBuscado = new Curso(codigo);
+        nodo = lista.buscarCurso(cursoBuscado);
+        if(nodo != null){
+            Curso cursoEncontrado = nodo.getValor();
+            txtCodigo.setText(cursoEncontrado.getCodigo());
+            txtNombre.setText(cursoEncontrado.getNombre());
+            txtCarrera.setText(cursoEncontrado.getCarrera());
+            cmbCiclo.setSelectedItem(cursoEncontrado.getCiclo());
+            cmbCreditos.setSelectedItem(cursoEncontrado.getCreditos());
+            activarOpcionesConsulta(true);
+        }
+        else
+        JOptionPane.showMessageDialog(null, "No se encontro un curso con ese codigo", "Aviso", 0);
+    }//GEN-LAST:event_btnConsultarActionPerformed
+    private void activarOpcionesConsulta(boolean estado){
+        btnActualizar.setEnabled(estado);
+        btnEliminar.setEnabled(estado);
+        btnGuardar.setEnabled(!estado);
+        btnConsultar.setEnabled(!estado);
+    }
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+         codigo = txtCodigo.getText().trim();
+        nombre = txtNombre.getText().trim();
+        carrera = txtCarrera.getText().trim();
+
+        if(codigo.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese codigo del curso","AVISO",2);
+            return;
+        }
+        if(nombre.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese nombre del curso", "AVISO", 2);
+            return;
+        }
+        if(cmbCiclo.getSelectedIndex() == 0){
+            JOptionPane.showMessageDialog(null, "Seleccione ciclo academico", "AVISO", 2);
+            return;
+        }if(cmbCreditos.getSelectedIndex() == 0){
+            JOptionPane.showMessageDialog(null, "Seleccione N° de creditos", "AVISO", 2);
+            return;
+        }
+        if(carrera.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese nombre de la carrera", "AVISO", 2);
+            return;
+        }
+        ciclo = cmbCiclo.getSelectedItem().toString();
+        creditos = cmbCreditos.getSelectedItem().toString();
+        
+        Curso curso = new Curso(codigo, nombre,ciclo, creditos, carrera);
+        nodo.setValor(curso);
+        lista.enOrden(modelo);
+        activarOpcionesConsulta(false);
+        limpiar();
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int opcion = JOptionPane.showConfirmDialog(null, "¿Desea eliminar este Empleado?","Mensaje",JOptionPane.YES_NO_OPTION);
+        if(opcion == JOptionPane.YES_OPTION){
+            lista.eliminarCurso(nodo.getValor());
+            JOptionPane.showMessageDialog(null, "Eliminado Correctamente","Mensaje",1);
+            lista.enOrden(modelo);
+            limpiar();
+        }
+        else
+        JOptionPane.showMessageDialog(null, "Operacion cancelada");
+    }//GEN-LAST:event_btnEliminarActionPerformed
+    public void limpiar(){
+        txtCodigo.setText("");
+        txtNombre.setText("");
+        cmbCiclo.setSelectedIndex(0);
+        cmbCreditos.setSelectedIndex(0);
+        txtCarrera.setText("");
+        txtCodigo.requestFocus();
+    }
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        limpiar();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnPreOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreOrdenActionPerformed
+        lista.preOrden(modelo);
+    }//GEN-LAST:event_btnPreOrdenActionPerformed
+
+    private void btnEnOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnOrdenActionPerformed
+        lista.enOrden(modelo);
+    }//GEN-LAST:event_btnEnOrdenActionPerformed
+
+    private void btnPostOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostOrdenActionPerformed
+        lista.postOrden(modelo);
+    }//GEN-LAST:event_btnPostOrdenActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -67,5 +411,24 @@ public class FrmEjercicio01 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnConsultar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnEnOrden;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnPostOrden;
+    private javax.swing.JButton btnPreOrden;
+    private javax.swing.JButton btnSalir;
+    private javax.swing.JComboBox<String> cmbCiclo;
+    private javax.swing.JComboBox<String> cmbCreditos;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblCursos;
+    private javax.swing.JTextField txtCarrera;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
+   private String codigo, nombre, ciclo, carrera, creditos;
 }
